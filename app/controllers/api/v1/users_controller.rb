@@ -1,4 +1,4 @@
-class Api::V1::UsersController < ApiController
+class Api::V1::UsersController < ApplicationController
     skip_before_action :authenticate, only: [:create, :login]
     include ActionController::HttpAuthentication::Basic::ControllerMethods
 
@@ -14,13 +14,9 @@ class Api::V1::UsersController < ApiController
             
 
              user = User.find_by_username(usersname)
-          
-             if user && user.authenticate(password) then
-                respond_with do |format|
-                    format.JSON: {render json: {user: {id: user.id, username: user.username, token: user.auth_token}}}
-
-                end
-                
+         
+            if user && user.authenticate(password) then
+                render json: {user: {id: user.id, username: user.username, token: user.auth_token}}
              else 
                 render json: {status: :unauthorized, message: "wrong"} 
             end
