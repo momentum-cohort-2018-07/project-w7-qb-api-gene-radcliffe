@@ -7,22 +7,115 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.delete_all
 
-10.times do 
-   
+
+    a = 0;
     user = "GeneRadciffe1" 
     email = "email1" +"@yahoo.com"
-    User.create!(username: user, password: "password", email: email)
+    usergene = User.create!(username: user, password: "password", email: email)
+    10.times do
+        question = usergene.questions.create
+        question.title = "question number #{a +1}"
+        question.body = "##Hello"
+        question.published_date = Time.now
+        question.save
+    end
 
     user = "mattRadciffe1" 
     email = "mattemail" +"@yahoo.com"
-    User.create!(username: user, password: "password", email: email)
+    usermatt = User.create!(username: user, password: "password", email: email)
+
+    10.times do
+        question = usermatt.questions.create
+        question.title = "question number #{a +1}"
+        question.body = "##Hello"
+        question.published_date = Time.now
+        question.save
+    end
+    2.times do
+        question = usergene.questions.first
+        answer = question.answers.create
+        answer.title = "this is an answer #{a +1}"
+        answer.body = "this is the body #{a+2 }"
+        answer.user_id= usergene.id
+        answer.save
+
+        question = usergene.questions.second
+        answer = question.answers.create
+        answer.title = "this is an answer #{a +1}"
+        answer.body = "this is the body #{a+2 }"
+        answer.user_id= usergene.id
+        answer.save
+    end
+    #####################
 
     user = "roseRadciffe1" 
     email = "roseemail" +"@yahoo.com"
-    User.create!(username: user, password: "password", email: email)
+    userrose = User.create!(username: user, password: "password", email: email)
+    10.times do
+        question = userrose.questions.create
+        question.title = "question number #{a +1}"
+        question.body = "##Hello"
+        question.published_date = Time.now
+        question.save
+    end
 
+    2.times do
+        question = usermatt.questions.first
+        answer = question.answers.create
+        answer.title = "this is an answer #{a +1}"
+        answer.body = "this is the body #{a+2 }"
+        answer.user_id= userrose.id
+        answer.save
+
+        question = usermatt.questions.second
+        answer = question.answers.create
+        answer.title = "this is an answer #{a +1}"
+        answer.body = "this is the body #{a+2 }"
+        answer.user_id= userrose.id
+        answer.save
+    end
+
+    ###############
     user = "edwardRadciffe1" 
     email = "edwardemail" +"@yahoo.com"
-    User.create!(username: user, password: "password", email: email)
+    usered = User.create!(username: user, password: "password", email: email)
+    10.times do
+        question = usered.questions.create
+        question.title = "question number #{a +1}"
+        question.body = "##Hello"
+        question.published_date = Time.now
+        question.save
+    end
+    2.times do
+        question = userrose.questions.first
+        answer = question.answers.create
+        answer.title = "this is an answer #{a +1}"
+        answer.body = "this is the body #{a+2 }"
+        answer.user_id= usered.id
+        answer.save
 
-end
+        question = userrose.questions.second
+        answer = question.answers.create
+        answer.title = "this is an answer #{a +1}"
+        answer.body = "this is the body #{a+2 }"
+        answer.user_id= usered.id
+        answer.save
+    end
+
+    2.times do
+        question = usered.questions.first
+        answer = question.answers.create
+        answer.title = "this is an answer #{a +1}"
+        answer.body = "this is the body #{a+2 }"
+        answer.user_id= usergene.id
+        answer.save
+
+        question = usered.questions.second
+        answer = question.answers.create
+        answer.title = "this is an answer #{a +1}"
+        answer.body = "this is the body #{a+2 }"
+        answer.user_id= usergene.id
+        answer.save
+    end
+
+    ##############    
