@@ -26,23 +26,22 @@ class Api::V1::UsersController < ApplicationController
 
     def create
         
-        begin
+        user = User.new(users_params)
             
-            user = User.new(users_params)
-            if !user.save
-                render json: {status: :bad_request, message: user.errors.messages}
-            else
-                render :json =>{
-                    :status => :ok,
-                    :token => user.auth_token
+        if !user.save
+            render :json => {
+                :status => :bad_request, 
+                :message => user.errors.messages}
+        else
+             render :json =>{
+                :status => :ok,
+                :token => user.auth_token
 
-                 }
-            end
-            
-        rescue StandardError => exception
-            render json: {status: :bad_request, message: "Exception encountered: #{exception}"}
-        end
+             }
+        end        
+      
     end
+
 
     private
     def users_params
