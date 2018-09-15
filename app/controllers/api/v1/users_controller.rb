@@ -9,7 +9,6 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def login
-      # binding.pry
         authenticate_or_request_with_http_basic do |usersname, password|
             
 
@@ -25,26 +24,33 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def create
-        
+       
         user = User.new(users_params)
+        binding.pry
+        begin
             
-        if !user.save
-            render :json => {
-                :status => :bad_request, 
-                :message => user.errors.messages}
-        else
-             render :json =>{
-                :status => :ok,
-                :token => user.auth_token
-
-             }
-        end        
+           
       
+            if !user.save
+                render :json => {
+                    :status => :bad_request, 
+                    :message => user.errors.messages}
+            else
+                 render :json =>{
+                    :status => :ok,
+                    :token => user.auth_token
+    
+                 }
+            end        
+          
+        rescue StandardError => exception
+            render json: {status: :bad_request, message: "Exception encountered: #{exception}"}
+        end
     end
 
-
-    private
+    protected
     def users_params
         params.require(:user).permit(:username, :email, :password)
+      
     end
 end
