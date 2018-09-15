@@ -2,14 +2,15 @@ class Api::V1::AnswersController < ApplicationController
     
 #/api/v1/users/:user_id/questions/:question_id/answers
     def create
-        # binding.pry
+       
+        answer = Answer.new(answer_params)
         user = set_user
         question = user.questions.find(params[:question_id])
-        answers = question.answers
-        answer = answers.create(answer_params)
-        answer.user_id = params.permit[:user_id]
+        answer = question.answers.new(answer_params)
+        answer.user_id = user.id
+      
         question.save
-    
+       
     end
     def show
 

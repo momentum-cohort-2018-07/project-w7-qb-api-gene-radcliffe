@@ -32,8 +32,11 @@ class Api::V1::UsersController < ApplicationController
             if !user.save
                 render json: {status: :bad_request, message: user.errors.messages}
             else
-                @user = user
-                render 'api/v1/users/show'
+                render :json =>{
+                    :status => :ok,
+                    :token => user.auth_token
+
+                 }
             end
             
         rescue StandardError => exception
