@@ -6,6 +6,7 @@ class Api::V1::QuestionsController < ApplicationController
         #/api/v1/questions (works for unauthenticated, will throw an exception if it only returns 1 question to the jbuilder) 
         @questions = Question.where user_id: params[:user_id] if params[:user_id] !=nil
         @questions = Question.all if params[:user_id] == nil
+        binding.pry
         render 'api/v1/questions/index.json'
     end
 
