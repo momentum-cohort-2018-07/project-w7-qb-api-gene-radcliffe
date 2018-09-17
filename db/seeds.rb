@@ -31,21 +31,21 @@ User.delete_all
         question.published_date = Time.now
         question.save
     end
-    # 2.times do
-    #     question = usergene.questions.first
-    #     answer = question.answers.create
-    #     answer.title = "this is an answer #{a=a+1}"
-    #     answer.body = "this is the body #{a=a+1 }"
-    #     answer.user_id= usermatt.id
-    #     answer.save
+    2.times do
+        question = usergene.questions.first
+        answer = question.answers.create
+        answer.title = "this is an answer #{a=a+1}"
+        answer.body = "this is the body #{a=a+1 }"
+        answer.user_id= usermatt.id
+        answer.save
 
-    #     question = usergene.questions.second
-    #     answer = question.answers.create
-    #     answer.title = "this is an answer #{a=a+1}"
-    #     answer.body = "this is the body #{a=a+1 }"
-    #     answer.user_id= usermatt.id
-    #     answer.save
-    # end
+        question = usergene.questions.second
+        answer = question.answers.create
+        answer.title = "this is an answer #{a=a+1}"
+        answer.body = "this is the body #{a=a+1 }"
+        answer.user_id= usermatt.id
+        answer.save
+    end
     #####################
 
     user = "roseRadciffe1" 
@@ -59,21 +59,21 @@ User.delete_all
         question.save
     end
 
-    # 2.times do
-    #     question = usermatt.questions.first
-    #     answer = question.answers.create
-    #     answer.title = "this is an answer #{a=a+1}"
-    #     answer.body = "this is the body #{a=a+1 }"
-    #     answer.user_id= userrose.id
-    #     answer.save
+    2.times do
+        question = usermatt.questions.first
+        answer = question.answers.create
+        answer.title = "this is an answer #{a=a+1}"
+        answer.body = "this is the body #{a=a+1 }"
+        answer.user_id= userrose.id
+        answer.save
 
-    #     question = usermatt.questions.second
-    #     answer = question.answers.create
-    #     answer.title = "this is an answer #{a=a+1}"
-    #     answer.body = "this is the body #{a=a+1 }"
-    #     answer.user_id= userrose.id
-    #     answer.save
-    # end
+        question = usermatt.questions.second
+        answer = question.answers.create
+        answer.title = "this is an answer #{a=a+1}"
+        answer.body = "this is the body #{a=a+1 }"
+        answer.user_id= userrose.id
+        answer.save
+    end
 
     ###############
     user = "edwardRadciffe1" 
@@ -86,36 +86,36 @@ User.delete_all
         question.published_date = Time.now
         question.save
     end
-    # 2.times do
-    #     question = userrose.questions.first
-    #     answer = question.answers.create
-    #     answer.title = "this is an answer #{a=a+1}"
-    #     answer.body = "this is the body #{a=a+1 }"
-    #     answer.user_id= usered.id
-    #     answer.save
+    2.times do
+        question = userrose.questions.first
+        answer = question.answers.create
+        answer.title = "this is an answer #{a=a+1}"
+        answer.body = "this is the body #{a=a+1 }"
+        answer.user_id= usered.id
+        answer.save
 
-    #     question = userrose.questions.second
-    #     answer = question.answers.create
-    #     answer.title = "this is an answer #{a=a+1}"
-    #     answer.body = "this is the body #{a=a+1 }"
-    #     answer.user_id= usered.id
-    #     answer.save
-    # end
+        question = userrose.questions.second
+        answer = question.answers.create
+        answer.title = "this is an answer #{a=a+1}"
+        answer.body = "this is the body #{a=a+1 }"
+        answer.user_id= usered.id
+        answer.save
+    end
 
-    # 2.times do
-    #     question = usered.questions.first
-    #     answer = question.answers.create
-    #     answer.title = "this is an answer #{a=a+1}"
-    #     answer.body = "this is the body #{a=a+1 }"
-    #     answer.user_id= usergene.id
-    #     answer.save
+    2.times do
+        question = usered.questions.first
+        answer = question.answers.create
+        answer.title = "this is an answer #{a=a+1}"
+        answer.body = "this is the body #{a=a+1 }"
+        answer.user_id= usergene.id
+        answer.save
 
-    #     question = usered.questions.second
-    #     answer = question.answers.create
-    #     answer.title = "this is an answer #{a=a+1}"
-    #     answer.body = "this is the body #{a=a+1 }"
-    #     answer.user_id= usergene.id
-    #     answer.save
-    # end
+        question = usered.questions.second
+        answer = question.answers.create
+        answer.title = "this is an answer #{a=a+1}"
+        answer.body = "this is the body #{a=a+1 }"
+        answer.user_id= usergene.id
+        answer.save
+    end
 
     ##############    

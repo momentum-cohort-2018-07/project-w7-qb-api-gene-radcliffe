@@ -1,16 +1,25 @@
 class Api::V1::AnswersController < ApplicationController
     
-#/api/v1/users/:user_id/questions/:question_id/answers
+#/api/v1/questions/:question_id/answers
     def create
-       
-        answer = Answer.new(answer_params)
-        user = set_user
-        question = user.questions.find(params[:question_id])
-        answer = question.answers.new(answer_params)
-        answer.user_id = user.id
       
-        question.save
        
+        question = Question.find(params["question_id"])
+
+        answers = question.answers
+        answer = answers.new(answer_params)
+        # question = user.questions.find(params[:question_id])
+        # answer = question.answers.new(answer_params)
+        # answer.user_id = user.id
+        if answer.save
+            render :json =>{
+                :status => :ok,
+                :message => "saved"}
+        else  
+            render :json =>{
+                :status => :bad_request,
+                :message => "error saving"}
+        end
     end
     def show
 
@@ -32,7 +41,7 @@ class Api::V1::AnswersController < ApplicationController
     end
   
     def answer_params
-        params.require(:answer).permit(:title, :body)
+        params.require(:answer).permit(:title, :body, :user_id)
     end
    
 end

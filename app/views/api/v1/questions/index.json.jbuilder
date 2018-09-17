@@ -1,7 +1,7 @@
-json.questions @questions do |question|
+json.questions @questions.order(created_at: :desc) do |question|
     json.question do
         json.id question.id 
-        json.user_id question.user_id
+        json.user_id question.user.id
         json.username question.user.username
         json.title question.title
         json.body question.body

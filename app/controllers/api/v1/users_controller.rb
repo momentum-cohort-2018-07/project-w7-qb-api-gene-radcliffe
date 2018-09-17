@@ -15,9 +15,21 @@ class Api::V1::UsersController < ApplicationController
              user = User.find_by_username(usersname)
          
             if user && user.authenticate(password) then
-                render json: {user: {id: user.id, username: user.username, token: user.auth_token}}
-             else 
-                render json: {status: :unauthorized, message: "wrong"} 
+                render :json =>{
+                    :status => :ok,
+                    :id =>  user.id,
+                    :username => user.username,
+                    :token => user.auth_token,
+                    :joined => user.created_at
+                 }
+               
+             else
+                render :json =>{
+                    :status => :unauthorized,
+                    :message => "wrong"
+    
+                 }
+ d
             end
        end
 
