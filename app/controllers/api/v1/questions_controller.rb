@@ -1,5 +1,5 @@
 class Api::V1::QuestionsController < ApplicationController
- skip_before_action :authenticate, only: :index
+ skip_before_action :authenticate, only: [:index, :show]
 
     def index
         
@@ -15,6 +15,7 @@ class Api::V1::QuestionsController < ApplicationController
 
     def user
     end
+
     def show
        
         @question = Question.find(params[:id])
@@ -22,6 +23,7 @@ class Api::V1::QuestionsController < ApplicationController
        
     end
     def create 
+        
        # /api/v1/users/:user_id/questions --works
         question = Question.new(question_params)
         question.user = set_user

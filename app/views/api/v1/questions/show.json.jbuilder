@@ -7,6 +7,7 @@ json.question do
     json.updated_at @question.updated_at
     json.username @question.user.username
     json.userid @question.user.id
+    json.question_answered :true if @question.answers_count > 0
     answers = @question.answers
     
     json.answers answers do |answer|

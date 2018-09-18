@@ -8,6 +8,7 @@ json.questions @questions.order(created_at: :desc) do |question|
         json.created_at question.created_at
         json.updated_at question.updated_at
         json.answers question.answers.count
+        json.question_answered :true if question.answers_count > 0
     end
     
     

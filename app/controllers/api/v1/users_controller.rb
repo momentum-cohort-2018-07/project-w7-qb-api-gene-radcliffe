@@ -29,7 +29,7 @@ class Api::V1::UsersController < ApplicationController
                     :message => "wrong"
     
                  }
- d
+ 
             end
        end
 

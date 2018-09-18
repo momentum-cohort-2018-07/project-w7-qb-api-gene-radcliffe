@@ -6,7 +6,9 @@ Rails.application.routes.draw do
        
       get 'users/login', to: "users#login" 
       resources :questions, only: [:index, :show] do
-        resources :answers, only: [:create, :index]
+        resources :answers, only: [:create, :index] do
+            resources :answers, only: [:create, :show]
+        end
       end
       resources :users, only: [:create, :index] do
           resources :answers, only: :index

@@ -1,5 +1,5 @@
 class Api::V1::AnswersController < ApplicationController
-    
+    # skip_before_action :authenticate, only: :create
 #/api/v1/questions/:question_id/answers
     def create
       
