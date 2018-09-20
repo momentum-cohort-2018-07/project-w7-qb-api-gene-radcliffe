@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     namespace :v1 do
        
       get 'users/login', to: "users#login" 
+      get 'users/answer', to: "users#answer" 
       resources :questions, only: [:index, :show] do
         resources :answers, only: [:create, :index] do
             resources :answers, only: [:create, :show]

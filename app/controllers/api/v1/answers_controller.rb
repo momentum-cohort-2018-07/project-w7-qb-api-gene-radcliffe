@@ -7,18 +7,25 @@ class Api::V1::AnswersController < ApplicationController
         question = Question.find(params["question_id"])
 
         answers = question.answers
+        #fetch answer data (title, body, and the id of the user answering the question)  
         answer = answers.new(answer_params)
+
         # question = user.questions.find(params[:question_id])
         # answer = question.answers.new(answer_params)
         # answer.user_id = user.id
+        answer.question_id = params[:question_id]
         if answer.save
+            
+            userWhoAnswered = User.find(params[:answer][:user_id])
+            UserMailer.answer(userWhoAnswered).deliver_now
             render :json =>{
                 :status => :ok,
                 :message => "saved"}
         else  
             render :json =>{
                 :status => :bad_request,
-                :message => "error saving"}
+                :message => "error saving",
+                :errors => answer.errors.messages}
         end
     end
     def show

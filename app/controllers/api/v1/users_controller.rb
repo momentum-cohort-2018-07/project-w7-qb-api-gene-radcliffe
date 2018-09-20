@@ -1,9 +1,12 @@
 class Api::V1::UsersController < ApplicationController
-    skip_before_action :authenticate, only: [:create, :login]
+    skip_before_action :authenticate, only: [:create, :login, :answer]
     include ActionController::HttpAuthentication::Basic::ControllerMethods
 
     
-    
+    def answer
+       
+
+    end
     def index
         @user =User.all
     end
