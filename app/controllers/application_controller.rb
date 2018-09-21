@@ -15,6 +15,10 @@ class ApplicationController < ActionController::API
     def verified_user
       User.find_by auth_token: ActionController::HttpAuthentication::Token.token_and_options(request)[0]
     end
+    
+    def set_user2
+      @user = User.find(params[:user_id])
+    end
     def set_user
       begin
       @user = User.find(params[:user_id])

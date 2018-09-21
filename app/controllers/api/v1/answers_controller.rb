@@ -18,14 +18,25 @@ class Api::V1::AnswersController < ApplicationController
             
             userWhoAnswered = User.find(params[:answer][:user_id])
             UserMailer.answer(userWhoAnswered).deliver_now
+            notification = Notification.new()
+            message = "#{userWhoAnswered.username} has answered your question"
+            notification.message= message
+            notification.message_read = false
+            notification.messageable_type= "Question"
+            notification.messageable_id = params[:question_id]
+            if !notification.save
+               notificationerror = notification.errors.messages 
+            end
             render :json =>{
                 :status => :ok,
-                :message => "saved"}
+                :message => "saved",
+                :errors => notificationerror}
         else  
             render :json =>{
                 :status => :bad_request,
                 :message => "error saving",
-                :errors => answer.errors.messages}
+                :errors => answer.errors.messages,
+                :notification_errors => messageable_type}
         end
     end
     def show
@@ -51,4 +62,8 @@ class Api::V1::AnswersController < ApplicationController
         params.require(:answer).permit(:title, :body, :user_id)
     end
    
+    def notification_params
+        params.permit(:message, :messageable_type, :messageable_id, :message_read)
+
+    end
 end

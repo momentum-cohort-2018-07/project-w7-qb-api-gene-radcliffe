@@ -10,7 +10,11 @@ class Api::V1::UsersController < ApplicationController
     def index
         @user =User.all
     end
-
+    def profile
+        
+        @user = User.find(params[:id])
+        render 'api/v1/users/profile.json'
+    end
     def login
         authenticate_or_request_with_http_basic do |usersname, password|
             

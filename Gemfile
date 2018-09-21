@@ -52,3 +52,4 @@ gem 'rack-cors', require: 'rack/cors'
 gem "aws-sdk-s3", require: false
 gem "figaro"
 gem 'pg_search'
+gem 'acts_as_votable', '~> 0.11.1'

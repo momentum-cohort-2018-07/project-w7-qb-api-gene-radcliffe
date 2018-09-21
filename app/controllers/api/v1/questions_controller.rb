@@ -14,13 +14,30 @@ class Api::V1::QuestionsController < ApplicationController
     end
 
     def user
+        @user = set_user2
+        @questions = @user.questions
+        render 'api/v1/questions/user.json'
     end
 
     def show
-       
+    
         @question = Question.find(params[:id])
         render 'api/v1/questions/show.json'
        
+    end
+    def update
+        binding.pry
+        @question = Question.find(params[:id])
+        if @question.update(question_update_params)
+            render :json => {
+                :status => :ok, 
+                :message => "updated"}
+        else 
+            render :json => {
+                :status => :bad_request, 
+                :message => "update error",
+                :errors => @question.errors.messages}
+        end
     end
     def create 
         
@@ -40,10 +57,28 @@ class Api::V1::QuestionsController < ApplicationController
                 :errors => question.errors.messages}
         end
     end
+
+    def destroy
+
+        @question = Question.find(params[:id])
+
+        if @question.destroy
+            render :json => {
+                :status => :ok, 
+                :message => "deleted"}
+        else 
+            render :json => {
+                :status => :bad_request, 
+                :message => "deleting error",
+                :errors => question.errors.messages}
+        end
+    end
     private
 
     def question_params
         params.require(:question).permit(:title, :body, :user_id, :published_date)
     end
-   
+   def question_update_params
+    params.require(:question).permit(:title, :body)
+   end
 end

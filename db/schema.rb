@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_17_234358) do
+ActiveRecord::Schema.define(version: 2018_09_21_050336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,12 +28,23 @@ ActiveRecord::Schema.define(version: 2018_09_17_234358) do
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
-  create_table "emails", force: :cascade do |t|
-    t.integer "emailable_id"
-    t.string "emailable_type"
-    t.integer "user_id"
+  create_table "notifications", force: :cascade do |t|
+    t.string "message"
+    t.string "messageable_type"
+    t.bigint "messageable_id"
+    t.boolean "message_read", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["messageable_type", "messageable_id"], name: "index_notifications_on_messageable_type_and_messageable_id"
+  end
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text "content"
+    t.string "searchable_type"
+    t.bigint "searchable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -60,6 +71,20 @@ ActiveRecord::Schema.define(version: 2018_09_17_234358) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "votes", id: :serial, force: :cascade do |t|
+    t.string "votable_type"
+    t.integer "votable_id"
+    t.string "voter_type"
+    t.integer "voter_id"
+    t.boolean "vote_flag"
+    t.string "vote_scope"
+    t.integer "vote_weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
+    t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
   end
 
   add_foreign_key "answers", "questions"

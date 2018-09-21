@@ -18,4 +18,3 @@ json.questions @questions.order(created_at: :desc) do |question|
     
   
 end
-  
